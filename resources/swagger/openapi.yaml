@@ -1,0 +1,175 @@
+openapi: "3.0.0"
+info:
+  description: "This is API doc for My Portfolio."
+  version: "1.0.0"
+  title: "MyPortfolio"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "apiteam@swagger.io"
+tags:
+- name: "pet"
+  description: "Everything about your Pets"
+  externalDocs:
+    description: "Find out more"
+    url: "http://swagger.io"
+
+paths:
+  /account/{accountId}/works:
+    post:
+      summary: "作品追加"
+      description: "Add a new work to the portfolio"
+      operationId: "addWork"
+      parameters:
+        - in: path
+          name: accountId
+          required: true
+          schema:
+            $ref: "#/components/schemas/accountId" 
+      requestBody:
+        content:
+          application/json:
+            schema:
+                $ref: "#/components/schemas/work"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/work" 
+        405:
+          description: "Invalid input"
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
+
+    get:
+      summary: "作品照会"
+      description: "Get works of account"
+      operationId: "getWorks"
+      parameters:
+        - in: path
+          name: accountId
+          required: true
+          schema:
+            $ref: "#/components/schemas/accountId"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/workList" 
+        405:
+          description: "Invalid input"
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
+
+    put:
+      summary: "作品更新"
+      description: "Update a new work to the portfolio"
+      operationId: "updateWork"
+      parameters:
+        - in: path
+          name: accountId
+          required: true
+          schema:
+            $ref: "#/components/schemas/accountId"
+        - in: query
+          name: id
+          required: true
+          schema:
+            $ref: "#/components/schemas/workId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+                $ref: "#/components/schemas/work" 
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/work" 
+        405:
+          description: "Invalid input"
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
+
+    delete:
+      summary: "作品更新"
+      description: "Delete the work of account"
+      operationId: "deleteWork"
+      parameters:
+        - in: path
+          name: accountId
+          required: true
+          schema:
+            $ref: "#/components/schemas/accountId"
+        - in: query
+          name: id
+          required: true
+          schema:
+            $ref: "#/components/schemas/workId"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/work" 
+        405:
+          description: "Invalid input"
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
+
+components:
+  schemas:
+    work:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/workId"
+        accountId:
+          $ref: "#/components/schemas/accountId"
+        tag:
+          $ref: "#/components/schemas/tag"
+
+    workList:
+      type: object
+      properties:
+        work:
+          type: array
+          items:
+            $ref: "#/components/schemas/work"
+
+    tag:
+      type: object
+      properties:
+        tagId:
+          type: integer
+          example: 1
+        tagName:
+          type: string
+          example: "Java"
+
+    accountId:
+      type: integer
+      example: 1
+
+    workId:
+      type: integer
+      example: 1
+    
+
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
