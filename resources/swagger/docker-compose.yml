@@ -14,20 +14,6 @@ services:
       - "8802:8080"
     volumes:
       - ./openapi.yaml:/openapi.yaml
-    environment:
-      SWAGGER_JSON: /openapi.yaml
-  # REST API
-  # api:
-  #   tty: true
-  #   build:
-  #     context: ../api
-  #     dockerfile: Dockerfile
-  #   container_name: 'api'
-  #   volumes:
-  #     - ../api/:/usr/app/
-  #     - /usr/app/node_modules
-  #   environment:
-  #     NODE_ENV: development
-  #   ports:
-  #     - '3001:3001'
-  #   command: 'npm run dev'
+#    environment:
+#      SWAGGER_JSON: /openapi.yaml
+
