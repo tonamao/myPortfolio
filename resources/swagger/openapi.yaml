@@ -3,19 +3,12 @@ info:
   description: "This is API doc for My Portfolio."
   version: "1.0.0"
   title: "MyPortfolio"
-  termsOfService: "http://swagger.io/terms/"
-  contact:
-    email: "apiteam@swagger.io"
-tags:
-- name: "pet"
-  description: "Everything about your Pets"
-  externalDocs:
-    description: "Find out more"
-    url: "http://swagger.io"
 
 paths:
   /account/{accountId}/works:
     post:
+      tags:
+        - works
       summary: "作品追加"
       description: "Add a new work to the portfolio"
       operationId: "addWork"
@@ -31,46 +24,26 @@ paths:
             schema:
                 $ref: "#/components/schemas/work"
       responses:
-        200:
-          description: OK
+        204:
+          description: OK (No Content)
+        400:
+          description: Bad Request
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/work" 
-        405:
-          description: "Invalid input"
-      security:
-      - petstore_auth:
-        - "write:pets"
-        - "read:pets"
-
-    get:
-      summary: "作品照会"
-      description: "Get works of account"
-      operationId: "getWorks"
-      parameters:
-        - in: path
-          name: accountId
-          required: true
-          schema:
-            $ref: "#/components/schemas/accountId"
-      responses:
-        200:
-          description: OK
+                $ref: "#/components/schemas/error"
+        500:
+          description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/workList" 
-        405:
-          description: "Invalid input"
-      security:
-      - petstore_auth:
-        - "write:pets"
-        - "read:pets"
+                $ref: "#/components/schemas/error"
 
     put:
+      tags:
+        - works
       summary: "作品更新"
-      description: "Update a new work to the portfolio"
+      description: "Update the work of the account"
       operationId: "updateWork"
       parameters:
         - in: path
@@ -89,22 +62,58 @@ paths:
             schema:
                 $ref: "#/components/schemas/work" 
       responses:
+        204:
+          description: OK (No Content)
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+
+    get:
+      tags:
+        - works
+      summary: "作品照会"
+      description: "Get works of the account"
+      operationId: "getWorks"
+      parameters:
+        - in: path
+          name: accountId
+          required: true
+          schema:
+            $ref: "#/components/schemas/accountId"
+      responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/work" 
-        405:
-          description: "Invalid input"
-      security:
-      - petstore_auth:
-        - "write:pets"
-        - "read:pets"
+                $ref: "#/components/schemas/workList" 
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
 
     delete:
-      summary: "作品更新"
-      description: "Delete the work of account"
+      tags:
+        - works
+      summary: "作品削除"
+      description: "Delete the work of the account"
       operationId: "deleteWork"
       parameters:
         - in: path
@@ -118,21 +127,37 @@ paths:
           schema:
             $ref: "#/components/schemas/workId"
       responses:
-        200:
-          description: OK
+        204:
+          description: OK (No Content)
+        400:
+          description: Bad Request
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/work" 
-        405:
-          description: "Invalid input"
-      security:
-      - petstore_auth:
-        - "write:pets"
-        - "read:pets"
+                $ref: "#/components/schemas/error"
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
 
 components:
   schemas:
+
+    error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: "4001"
+        message:
+          type: string
+          example: "Invalid Parameters"
+        detail:
+          type: string
+          example: "error detail"
+
     work:
       type: object
       properties:
@@ -140,13 +165,19 @@ components:
           $ref: "#/components/schemas/workId"
         accountId:
           $ref: "#/components/schemas/accountId"
-        tag:
-          $ref: "#/components/schemas/tag"
+        url:
+          $ref: "#/components/schemas/url"
+        img:
+          $ref: "#/components/schemas/img"
+        tagList:
+          type: array
+          items:
+            $ref: "#/components/schemas/tag"
 
     workList:
       type: object
       properties:
-        work:
+        workList:
           type: array
           items:
             $ref: "#/components/schemas/work"
@@ -168,8 +199,24 @@ components:
     workId:
       type: integer
       example: 1
-    
 
-externalDocs:
-  description: "Find out more about Swagger"
-  url: "http://swagger.io"
+    url:
+      type: string
+      example: "https://work.link.com"
+
+    img:
+      type: object
+      properties:
+        fileName:
+          $ref: "#/components/schemas/fileName"
+        fileValue:
+          $ref: "#/components/schemas/fileValue"
+
+    fileName:
+      type: string
+      example: "xxx.png"
+
+    fileValue:
+      type: string
+      example: "eHh4LnBuZw=="
+      description: "string value encoded by base64"
