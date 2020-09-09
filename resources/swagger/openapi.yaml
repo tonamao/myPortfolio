@@ -1,0 +1,222 @@
+openapi: "3.0.0"
+info:
+  description: "This is API doc for My Portfolio."
+  version: "1.0.0"
+  title: "MyPortfolio"
+
+paths:
+  /account/{accountId}/works:
+    post:
+      tags:
+        - works
+      summary: "作品追加"
+      description: "Add a new work to the portfolio"
+      operationId: "addWork"
+      parameters:
+        - in: path
+          name: accountId
+          required: true
+          schema:
+            $ref: "#/components/schemas/accountId" 
+      requestBody:
+        content:
+          application/json:
+            schema:
+                $ref: "#/components/schemas/work"
+      responses:
+        204:
+          description: OK (No Content)
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+
+    put:
+      tags:
+        - works
+      summary: "作品更新"
+      description: "Update the work of the account"
+      operationId: "updateWork"
+      parameters:
+        - in: path
+          name: accountId
+          required: true
+          schema:
+            $ref: "#/components/schemas/accountId"
+        - in: query
+          name: id
+          required: true
+          schema:
+            $ref: "#/components/schemas/workId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+                $ref: "#/components/schemas/work" 
+      responses:
+        204:
+          description: OK (No Content)
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+
+    get:
+      tags:
+        - works
+      summary: "作品照会"
+      description: "Get works of the account"
+      operationId: "getWorks"
+      parameters:
+        - in: path
+          name: accountId
+          required: true
+          schema:
+            $ref: "#/components/schemas/accountId"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/workList" 
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+
+    delete:
+      tags:
+        - works
+      summary: "作品削除"
+      description: "Delete the work of the account"
+      operationId: "deleteWork"
+      parameters:
+        - in: path
+          name: accountId
+          required: true
+          schema:
+            $ref: "#/components/schemas/accountId"
+        - in: query
+          name: id
+          required: true
+          schema:
+            $ref: "#/components/schemas/workId"
+      responses:
+        204:
+          description: OK (No Content)
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+
+components:
+  schemas:
+
+    error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: "4001"
+        message:
+          type: string
+          example: "Invalid Parameters"
+        detail:
+          type: string
+          example: "error detail"
+
+    work:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/workId"
+        accountId:
+          $ref: "#/components/schemas/accountId"
+        url:
+          $ref: "#/components/schemas/url"
+        img:
+          $ref: "#/components/schemas/img"
+        tagList:
+          type: array
+          items:
+            $ref: "#/components/schemas/tag"
+
+    workList:
+      type: object
+      properties:
+        workList:
+          type: array
+          items:
+            $ref: "#/components/schemas/work"
+
+    tag:
+      type: object
+      properties:
+        tagId:
+          type: integer
+          example: 1
+        tagName:
+          type: string
+          example: "Java"
+
+    accountId:
+      type: integer
+      example: 1
+
+    workId:
+      type: integer
+      example: 1
+
+    url:
+      type: string
+      example: "https://work.link.com"
+
+    img:
+      type: object
+      properties:
+        fileName:
+          $ref: "#/components/schemas/fileName"
+        fileValue:
+          $ref: "#/components/schemas/fileValue"
+
+    fileName:
+      type: string
+      example: "xxx.png"
+
+    fileValue:
+      type: string
+      example: "eHh4LnBuZw=="
+      description: "string value encoded by base64"
