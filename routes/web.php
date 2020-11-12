@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/my-portfolio', function () {
+    return view('portfolio.home');
+});
+
+Route::get('/my-portfolio-admin', function () {
+    return view('portfolio.admin');
+});
