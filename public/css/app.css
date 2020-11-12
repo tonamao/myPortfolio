@@ -10903,3 +10903,8 @@ a.text-dark:focus {
   }
 }
 
+body {
+  background-image: url(/images/pink_rice.png?5f26da628c7f66b4aae097e1962b9dd1);
+  background-repeat: repeat;
+}
+
