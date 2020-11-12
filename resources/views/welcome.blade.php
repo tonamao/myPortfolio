@@ -3,6 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- 追加コード -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>Laravel</title>
 
@@ -62,6 +64,9 @@
                 margin-bottom: 30px;
             }
         </style>
+        <!-- 追加コード↓ -->
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <!-- 追加コード↑ -->
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -94,6 +99,11 @@
                     <a href="https://vapor.laravel.com">Vapor</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
+                <!-- 追加コード -->
+                <div id="app">
+                    <example-component></example-component>
+                </div>
+                <script src=" {{ mix('js/app.js') }} "></script>
             </div>
         </div>
     </body>
