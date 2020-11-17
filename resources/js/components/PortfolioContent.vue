@@ -5,10 +5,10 @@
             <!-- Contents -->
             <div class="my-content row" v-for="content in excludeContact">
                 <div class="my-profile title col-sm-8 col-xl-8 offset-sm-2 offset-xl-2">
-                    {{ content.contentType | convertUpperCase }}
+                    {{ content.content_type | convertUpperCase }}
                 </div>
                 <div class="my-profile text col-sm-8 col-xl-8 offset-sm-2 offset-xl-2">
-                    <span>{{ content.content }}</span>
+                    <span>{{ content.content_text }}</span>
                 </div>
             </div>
 
@@ -57,10 +57,10 @@
             <!-- Contact -->
             <div class="my-content row" v-for="content in getContact">
                 <div class="my-profile title col-sm-8 col-xl-8 offset-sm-2 offset-xl-2">
-                    {{ content.contentType | convertUpperCase }}
+                    {{ content.content_type | convertUpperCase }}
                 </div>
                 <div class="my-profile text col-sm-8 col-xl-8 offset-sm-2 offset-xl-2">
-                    <span>{{ content.content }}</span>
+                    <span>{{ content.content_text }}</span>
                 </div>
             </div>
 
@@ -73,12 +73,18 @@ export default {
     name: "PortfolioContent",
     data() {
         return {
-            contentList: [
-                {id: 1, contentType: "profile", content: "ポートフォリオ", entering: false},
-                {id: 2, contentType: "skills", content: "スキル", entering: false},
-                {id: 3, contentType: "contact", content: "コンタクト", entering: false},
-            ]
+            contentList: []
         }
+    },
+    mounted() {
+        this.getContents();
+    },
+    methods: {
+        getContents() {
+            axios.get('/api/contents').then((res) => {
+                this.contentList = res.data;
+            });
+        },
     },
     filters: {
         convertUpperCase(value) {
@@ -88,10 +94,10 @@ export default {
     },
     computed: {
         excludeContact: function() {
-            return this.contentList.filter(c => c.contentType != "contact")
+            return this.contentList.filter(c => c.content_type != "contact")
         },
         getContact: function() {
-            return this.contentList.filter(c => c.contentType == "contact")
+            return this.contentList.filter(c => c.content_type == "contact")
         },
     }
 }

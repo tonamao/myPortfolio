@@ -22,7 +22,6 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('portfolio-header', require('./components/PortfolioHeader.vue').default);
 Vue.component('portfolio-content', require('./components/PortfolioContent.vue').default);
-Vue.component('test-header', require('./components/TestHeader.vue').default);
 Vue.component('editor-content', require('./components/PortfolioEditorContent.vue').default);
 
 // Font Awesomeのcore
