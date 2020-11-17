@@ -2,17 +2,18 @@
     <div id="portfolioEditorContent" class="portfolio-editor-content container-fluid">
         <div id="contentTitle" class="content-title">My Portfolio</div>
         <div id="myContent" class="my-contents">
+
             <!-- Contents -->
             <div class="my-content row" v-for="content in excludeContact">
                 <div class="my-profile title col-sm-8 col-xl-8 offset-sm-2 offset-xl-2">
-                    {{ content.contentType | convertUpperCase }}
+                    {{ content.content_type | convertUpperCase }}
                 </div>
                 <div class="my-profile text col-sm-8 col-xl-8 offset-sm-2 offset-xl-2">
                     <template v-if="content.entering">
-                        <textarea class="form-control" v-model="content.content" @keyup.enter="content.entering = false" @blur="content.entering = false" ref="contentsRef" />
+                        <textarea class="form-control" v-model="content.content_text" @keyup.enter="content.entering = false" @blur="content.entering = false" ref="contentsRef" />
                     </template>
                     <template v-else="">
-                        <span @click="clickContent(content.id)">{{ content.content }}</span>
+                        <span @click="clickContent(content.id)">{{ content.content_text }}</span>
                     </template>
                 </div>
             </div>
@@ -63,14 +64,14 @@
             <!-- Contact -->
             <div class="my-content row" v-for="content in getContact">
                 <div class="my-profile title col-sm-8 col-xl-8 offset-sm-2 offset-xl-2">
-                    {{ content.contentType | convertUpperCase }}
+                    {{ content.content_type | convertUpperCase }}
                 </div>
                 <div class="my-profile text col-sm-8 col-xl-8 offset-sm-2 offset-xl-2">
                     <template v-if="content.entering">
-                        <textarea class="form-control" v-model="content.content" @keyup.enter="content.entering = false" @blur="content.entering = false" ref="contactsRef" />
+                        <textarea class="form-control" v-model="content.content_text" @keyup.enter="content.entering = false" @blur="content.entering = false" ref="contactsRef" />
                     </template>
                     <template v-else="">
-                        <span @click="clickContact(content.id)">{{ content.content }}</span>
+                        <span @click="clickContact(content.id)">{{ content.content_text }}</span>
                     </template>
                 </div>
             </div>
@@ -84,20 +85,25 @@ export default {
     name: "portfolioEditorContent",
     data() {
         return {
-            contentList: [
-                {id: 1, contentType: "profile", content: "ポートフォリオ", entering: false},
-                {id: 2, contentType: "skills", content: "スキル", entering: false},
-                {id: 3, contentType: "contact", content: "コンタクト", entering: false},
-            ]
+            contentList: []
         }
     },
+    mounted() {
+        this.getContents();
+    },
     methods: {
+        getContents(){
+            axios.get('/api/contents').then((res) => {
+                this.contentList = res.data;
+                this.contentList.forEach(c => this.$set(c, 'entering', false));
+            });
+        },
         clickContent: function(id) {
-            this.contentList.filter(c => c.id == id)[0].entering = true
+            this.contentList.filter(c => c.id == id).forEach(c => c.entering = true);
             this.$nextTick(() => this.$refs.contentsRef[0].focus())
         },
         clickContact: function(id) {
-            this.contentList.filter(c => c.id == id)[0].entering = true
+            this.contentList.filter(c => c.id == id).forEach(c => c.entering = true);
             this.$nextTick(() => this.$refs.contactsRef[0].focus())
         },
     },
@@ -109,10 +115,10 @@ export default {
     },
     computed: {
         excludeContact: function() {
-            return this.contentList.filter(c => c.contentType != "contact")
+            return this.contentList.filter(c => c.content_type != "contact")
         },
         getContact: function() {
-            return this.contentList.filter(c => c.contentType == "contact")
+            return this.contentList.filter(c => c.content_type == "contact")
         },
     }
 }

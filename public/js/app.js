@@ -16437,23 +16437,20 @@ __webpack_require__.r(__webpack_exports__);
   name: "PortfolioContent",
   data: function data() {
     return {
-      contentList: [{
-        id: 1,
-        contentType: "profile",
-        content: "ポートフォリオ",
-        entering: false
-      }, {
-        id: 2,
-        contentType: "skills",
-        content: "スキル",
-        entering: false
-      }, {
-        id: 3,
-        contentType: "contact",
-        content: "コンタクト",
-        entering: false
-      }]
+      contentList: []
     };
+  },
+  mounted: function mounted() {
+    this.getContents();
+  },
+  methods: {
+    getContents: function getContents() {
+      var _this = this;
+
+      axios.get('/api/contents').then(function (res) {
+        _this.contentList = res.data;
+      });
+    }
   },
   filters: {
     convertUpperCase: function convertUpperCase(value) {
@@ -16464,12 +16461,12 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     excludeContact: function excludeContact() {
       return this.contentList.filter(function (c) {
-        return c.contentType != "contact";
+        return c.content_type != "contact";
       });
     },
     getContact: function getContact() {
       return this.contentList.filter(function (c) {
-        return c.contentType == "contact";
+        return c.content_type == "contact";
       });
     }
   }
@@ -16567,47 +16564,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "portfolioEditorContent",
   data: function data() {
     return {
-      contentList: [{
-        id: 1,
-        contentType: "profile",
-        content: "ポートフォリオ",
-        entering: false
-      }, {
-        id: 2,
-        contentType: "skills",
-        content: "スキル",
-        entering: false
-      }, {
-        id: 3,
-        contentType: "contact",
-        content: "コンタクト",
-        entering: false
-      }]
+      contentList: []
     };
   },
+  mounted: function mounted() {
+    this.getContents();
+  },
   methods: {
-    clickContent: function clickContent(id) {
+    getContents: function getContents() {
       var _this = this;
 
-      this.contentList.filter(function (c) {
-        return c.id == id;
-      })[0].entering = true;
-      this.$nextTick(function () {
-        return _this.$refs.contentsRef[0].focus();
+      axios.get('/api/contents').then(function (res) {
+        _this.contentList = res.data;
+
+        _this.contentList.forEach(function (c) {
+          return _this.$set(c, 'entering', false);
+        });
       });
     },
-    clickContact: function clickContact(id) {
+    clickContent: function clickContent(id) {
       var _this2 = this;
 
       this.contentList.filter(function (c) {
         return c.id == id;
-      })[0].entering = true;
+      }).forEach(function (c) {
+        return c.entering = true;
+      });
       this.$nextTick(function () {
-        return _this2.$refs.contactsRef[0].focus();
+        return _this2.$refs.contentsRef[0].focus();
+      });
+    },
+    clickContact: function clickContact(id) {
+      var _this3 = this;
+
+      this.contentList.filter(function (c) {
+        return c.id == id;
+      }).forEach(function (c) {
+        return c.entering = true;
+      });
+      this.$nextTick(function () {
+        return _this3.$refs.contactsRef[0].focus();
       });
     }
   },
@@ -16620,12 +16621,12 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     excludeContact: function excludeContact() {
       return this.contentList.filter(function (c) {
-        return c.contentType != "contact";
+        return c.content_type != "contact";
       });
     },
     getContact: function getContact() {
       return this.contentList.filter(function (c) {
-        return c.contentType == "contact";
+        return c.content_type == "contact";
       });
     }
   }
@@ -53086,7 +53087,7 @@ var render = function() {
                 [
                   _vm._v(
                     "\n                " +
-                      _vm._s(_vm._f("convertUpperCase")(content.contentType)) +
+                      _vm._s(_vm._f("convertUpperCase")(content.content_type)) +
                       "\n            "
                   )
                 ]
@@ -53098,7 +53099,7 @@ var render = function() {
                   staticClass:
                     "my-profile text col-sm-8 col-xl-8 offset-sm-2 offset-xl-2"
                 },
-                [_c("span", [_vm._v(_vm._s(content.content))])]
+                [_c("span", [_vm._v(_vm._s(content.content_text))])]
               )
             ])
           }),
@@ -53116,7 +53117,7 @@ var render = function() {
                 [
                   _vm._v(
                     "\n                " +
-                      _vm._s(_vm._f("convertUpperCase")(content.contentType)) +
+                      _vm._s(_vm._f("convertUpperCase")(content.content_type)) +
                       "\n            "
                   )
                 ]
@@ -53128,7 +53129,7 @@ var render = function() {
                   staticClass:
                     "my-profile text col-sm-8 col-xl-8 offset-sm-2 offset-xl-2"
                 },
-                [_c("span", [_vm._v(_vm._s(content.content))])]
+                [_c("span", [_vm._v(_vm._s(content.content_text))])]
               )
             ])
           })
@@ -53289,7 +53290,7 @@ var render = function() {
                 [
                   _vm._v(
                     "\n                " +
-                      _vm._s(_vm._f("convertUpperCase")(content.contentType)) +
+                      _vm._s(_vm._f("convertUpperCase")(content.content_type)) +
                       "\n            "
                   )
                 ]
@@ -53309,14 +53310,14 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: content.content,
-                              expression: "content.content"
+                              value: content.content_text,
+                              expression: "content.content_text"
                             }
                           ],
                           ref: "contentsRef",
                           refInFor: true,
                           staticClass: "form-control",
-                          domProps: { value: content.content },
+                          domProps: { value: content.content_text },
                           on: {
                             keyup: function($event) {
                               if (
@@ -53340,7 +53341,11 @@ var render = function() {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.$set(content, "content", $event.target.value)
+                              _vm.$set(
+                                content,
+                                "content_text",
+                                $event.target.value
+                              )
                             }
                           }
                         })
@@ -53355,7 +53360,7 @@ var render = function() {
                               }
                             }
                           },
-                          [_vm._v(_vm._s(content.content))]
+                          [_vm._v(_vm._s(content.content_text))]
                         )
                       ]
                 ],
@@ -53377,7 +53382,7 @@ var render = function() {
                 [
                   _vm._v(
                     "\n                " +
-                      _vm._s(_vm._f("convertUpperCase")(content.contentType)) +
+                      _vm._s(_vm._f("convertUpperCase")(content.content_type)) +
                       "\n            "
                   )
                 ]
@@ -53397,14 +53402,14 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: content.content,
-                              expression: "content.content"
+                              value: content.content_text,
+                              expression: "content.content_text"
                             }
                           ],
                           ref: "contactsRef",
                           refInFor: true,
                           staticClass: "form-control",
-                          domProps: { value: content.content },
+                          domProps: { value: content.content_text },
                           on: {
                             keyup: function($event) {
                               if (
@@ -53428,7 +53433,11 @@ var render = function() {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.$set(content, "content", $event.target.value)
+                              _vm.$set(
+                                content,
+                                "content_text",
+                                $event.target.value
+                              )
                             }
                           }
                         })
@@ -53443,7 +53452,7 @@ var render = function() {
                               }
                             }
                           },
-                          [_vm._v(_vm._s(content.content))]
+                          [_vm._v(_vm._s(content.content_text))]
                         )
                       ]
                 ],
@@ -65876,7 +65885,6 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 Vue.component('portfolio-header', __webpack_require__(/*! ./components/PortfolioHeader.vue */ "./resources/js/components/PortfolioHeader.vue")["default"]);
 Vue.component('portfolio-content', __webpack_require__(/*! ./components/PortfolioContent.vue */ "./resources/js/components/PortfolioContent.vue")["default"]);
-Vue.component('test-header', __webpack_require__(/*! ./components/TestHeader.vue */ "./resources/js/components/TestHeader.vue")["default"]);
 Vue.component('editor-content', __webpack_require__(/*! ./components/PortfolioEditorContent.vue */ "./resources/js/components/PortfolioEditorContent.vue")["default"]); // Font Awesomeのcore
 
  // solid: 内塗り
@@ -66274,17 +66282,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PortfolioHeader_vue_vue_type_template_id_0691c7da_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
-
-/***/ }),
-
-/***/ "./resources/js/components/TestHeader.vue":
-/*!************************************************!*\
-  !*** ./resources/js/components/TestHeader.vue ***!
-  \************************************************/
-/*! exports provided: default */
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.js):\nError: ENOENT: no such file or directory, open '/var/www/myPortfolio/resources/js/components/TestHeader.vue'");
 
 /***/ }),
 
