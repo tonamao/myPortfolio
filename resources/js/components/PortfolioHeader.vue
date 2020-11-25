@@ -30,15 +30,16 @@
 
 <script>
 export default {
-    name: "TestHeader"
+    name: "PortfolioHeader"
 }
 </script>
 
 <style scoped>
 .portfolio-header {
-    background-color: rgba(246,223,221,.7);
-    box-shadow:  0 4px 4px 0 #636b6f;
+    background-color: rgba(246,223,221,.8);
+    box-shadow:  0 4px 4px 0 #662B3A;
     position: fixed;
+    z-index: 2;
 }
 
 .header-content {
@@ -46,7 +47,7 @@ export default {
 }
 
 .header-content > span {
-    color: #636b6f;
+    color: #421C26;
     padding: 0 25px;
     font-size: 13px;
     font-weight: 600;
@@ -56,7 +57,7 @@ export default {
 }
 
 .links > a {
-    color: #636b6f;
+    color: #421C26;
     padding: 0 25px;
     font-size: 13px;
     font-weight: 600;

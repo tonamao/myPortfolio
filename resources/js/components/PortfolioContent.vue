@@ -12,41 +12,21 @@
                 </div>
             </div>
 
+            <!-- Works -->
             <div id="myWorks" class="my-content my-works row">
                 <div id="myWorksTitle" class="my-works title col-sm-8 col-xl-8 offset-sm-2 offset-xl-2">
                     WORKS
                 </div>
-                <div id="myWorksText" class="my-works text col-sm-10 col-xl-10 offset-sm-1 offset-xl-1">
-                    <div class="container">
-                        <div class="card-deck">
-                            <div class="card">
-                                <img class="card-img-top" src="../../img/test-samegame.png" alt="Test Image">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <div class="card-text">
-                                        <p class="">Java</p>
-                                        <p class="">JavaScript</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <img class="card-img-top" src="../../img/test-samegame.png" alt="Test image">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <div class="card-text">
-                                        <p class="">Java</p>
-                                        <p class="">JavaScript</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <img class="card-img-top" src="../../img/test-samegame.png" alt="Test image">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <div class="card-text">
-                                        <p class="">Java</p>
-                                        <p class="">JavaScript</p>
-                                    </div>
+                <div id="myWorksText" class="my-works text row col-sm-10 col-xl-10 offset-sm-1 offset-xl-1">
+                    <div class="my-works container">
+                        <div class="my-works card-item" v-for="work in workList">
+                            <a class="my-works" :href="work.link">
+                                <img class="my-works card-img-top" :src="work.imgPath" alt="Test image">
+                            </a>
+                            <div class="my-works card-body">
+                                <h5 class="card-title">{{ work.title }}</h5>
+                                <div class="card-text">
+                                    <p class="" v-for="tag in work.tagList">{{ tag.name }}</p>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +53,13 @@ export default {
     name: "PortfolioContent",
     data() {
         return {
-            contentList: []
+            contentList: [],
+            workList: [
+                {id:1, title:"SameGame", link:"https://tonamao.github.io/SameGame/", imgPath:require("../../img/test-full-samegame.png"), tagList:[{id:1, name:"Java"}, {id:2, name:"PHP"}]},
+                {id:2, title:"MyPortfolio", link:"#myportfolio", imgPath:require("../../img/test-full-samegame.png"), tagList:[{id:3, name:"JavaScript"}]},
+                {id:3, title:"お絵描き", link:"#oekaki", imgPath:require("../../img/test-full-samegame.png"), tagList:[{id:3, name:"JavaScript"}]},
+                {id:4, title:"大富豪", link:"#daifugo", imgPath:require("../../img/test-full-samegame.png"), tagList:[{id:2, name:"PHP"}, {id:3, name:"JavaScript"}]},
+            ]
         }
     },
     mounted() {
@@ -107,6 +93,7 @@ export default {
 .portfolio-content {
     text-align: center;
     padding-top: 4%;
+    color: #421C26;
 }
 
 .content-title{
@@ -125,21 +112,36 @@ export default {
     font-size: 20px;
 }
 
-.card-text > p {
-    font-size: 14px;
-    display: inline-block;
-    margin: 0 .1em .2em 0;
-    padding: .2em;
-    line-height: 1;
-    color: #F5A9B3;
-    background-color: #fff;
-    border: 1px solid #F5A9B3;
-    border-left: 4px solid #F5A9B3;
-}
-.card-text > p:before {
-    content: "#";
+a.my-works {
+    color: #421C26;
 }
 
+.my-works.container {
+    display: flex;
+    /* flexboxレイアウトを使うための命令 */
+    flex-wrap: wrap;
+    /* 上記で囲われたflexアイテムを折り返すように設定する */
+}
+
+.my-works.card-item {
+    padding: 0.75em;
+    width: 33.3333333333%;
+}
+
+.my-works > .card-text > p {
+    font-size: 14px;
+    display: inline-block;
+    margin: 0 .4em .4em 0;
+    padding: .4em;
+    line-height: 1;
+    color: #ED6488;
+    background-color: #FFF;
+    border: 1px solid #ED6488;
+    border-left: 4px solid #ED6488;
+}
+.my-works > .card-text > p:before {
+    content: "#";
+}
 
 
 </style>
