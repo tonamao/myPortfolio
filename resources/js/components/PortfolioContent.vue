@@ -21,12 +21,12 @@
                     <div class="my-works container">
                         <div class="my-works card-item" v-for="work in workList">
                             <a class="my-works" :href="work.link">
-                                <img class="my-works card-img-top" :src="work.imgPath" alt="Test image">
+                                <img class="my-works card-img-top" :src="getImgPath(work.img_path)" alt="No image!">
                             </a>
                             <div class="my-works card-body">
                                 <h5 class="card-title">{{ work.title }}</h5>
                                 <div class="card-text">
-                                    <p class="" v-for="tag in work.tagList">{{ tag.name }}</p>
+                                    <p class="" v-for="tag in toTagList">{{ tag }}</p>
                                 </div>
                             </div>
                         </div>
@@ -54,22 +54,28 @@ export default {
     data() {
         return {
             contentList: [],
-            workList: [
-                {id:1, title:"SameGame", link:"https://tonamao.github.io/SameGame/", imgPath:require("../../img/test-full-samegame.png"), tagList:[{id:1, name:"Java"}, {id:2, name:"PHP"}]},
-                {id:2, title:"MyPortfolio", link:"#myportfolio", imgPath:require("../../img/test-full-samegame.png"), tagList:[{id:3, name:"JavaScript"}]},
-                {id:3, title:"お絵描き", link:"#oekaki", imgPath:require("../../img/test-full-samegame.png"), tagList:[{id:3, name:"JavaScript"}]},
-                {id:4, title:"大富豪", link:"#daifugo", imgPath:require("../../img/test-full-samegame.png"), tagList:[{id:2, name:"PHP"}, {id:3, name:"JavaScript"}]},
-            ]
+            workList: [],
+            imgPath: [],
+            tagList: [],
         }
     },
     mounted() {
         this.getContents();
+        this.getWorks();
     },
     methods: {
         getContents() {
             axios.get('/api/contents').then((res) => {
                 this.contentList = res.data;
             });
+        },
+        getWorks() {
+            axios.get('/api/works').then((res) => {
+                this.workList = res.data;
+            });
+        },
+        getImgPath(path) {
+            return require(`../../img/${path}`);
         },
     },
     filters: {
@@ -84,6 +90,11 @@ export default {
         },
         getContact: function() {
             return this.contentList.filter(c => c.content_type == "contact")
+        },
+        toTagList: function () {
+            this.workList.forEach(w => {
+                return w.tags.split(",");
+            });
         },
     }
 }

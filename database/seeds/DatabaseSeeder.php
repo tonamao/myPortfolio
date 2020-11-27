@@ -15,5 +15,8 @@ class DatabaseSeeder extends Seeder
 
         // Content読み込み
         $this->call(ContentTableSeeder::class);
+
+        // Work読み込み
+        $this->call(WorkTableSeeder::class);
     }
 }
