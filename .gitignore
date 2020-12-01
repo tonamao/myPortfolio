@@ -12,7 +12,9 @@ npm-debug.log
 yarn-error.log
 
 # 追加
-/public
+/public/js
+/public/image
+/public/css
 
 # Mac向け
 *.DS_Store
@@ -21,4 +23,5 @@ yarn-error.log
 # PhpStorm
 .idea/*.iml
 .idea/*.xml
-
+## TODO: .idea配下は今後整理する
+.idea/
