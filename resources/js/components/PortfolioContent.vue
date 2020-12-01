@@ -13,7 +13,7 @@
             </div>
 
             <!-- Works -->
-            <div id="myWorks" class="my-content my-works row">
+            <div id="myWorks" class="my-works row">
                 <div id="myWorksTitle" class="my-works title col-sm-8 col-xl-8 offset-sm-2 offset-xl-2">
                     WORKS
                 </div>
@@ -24,7 +24,7 @@
                                 <img class="my-works card-img-top" :src="getImgPath(work.img_path)" alt="No image!">
                             </a>
                             <div class="my-works card-body">
-                                <h5 class="card-title">{{ work.title }}</h5>
+                                <p class="card-title">{{ work.title }}</p>
                                 <div class="card-text">
                                     <p class="" v-for="tag in toTagList">{{ tag }}</p>
                                 </div>
@@ -103,24 +103,12 @@ export default {
 <style scoped>
 .portfolio-content {
     text-align: center;
-    padding-top: 4%;
+    padding-top: 68px;
     color: #421C26;
-}
-
-.content-title{
-    font-size: 68px;
 }
 
 .my-contents > .my-content {
     padding: 2%;
-}
-
-.my-content > .title {
-    font-size: 40px;
-}
-
-.my-content > .text {
-    font-size: 20px;
 }
 
 a.my-works {
@@ -134,9 +122,51 @@ a.my-works {
     /* 上記で囲われたflexアイテムを折り返すように設定する */
 }
 
+/* For Desktop */
+@media (min-width: 768px) {
+
+    .content-title{
+        font-size: 3.8em;
+    }
+
+    .my-content > .title, .my-works.title {
+        font-size: 2em;
+    }
+
+    .my-content > .text {
+        font-size: 1.2rem;
+    }
+
+    .my-works.card-item {
+        padding: 0.75em;
+        width: 33.3333333333%;
+    }
+}
+
+/* For SmartPhone */
+@media (max-width: 767.98px) {
+
+    .content-title{
+        font-size: 3em;
+    }
+
+    .my-content > .title, .my-works.title {
+        font-size: 1.8em;
+    }
+
+    .my-content > .text {
+        font-size: 1.1rem;
+    }
+
+    .my-works.card-item {
+        padding: 0.75em;
+        width: 100%;
+    }
+}
+
 .my-works.card-item {
     padding: 0.75em;
-    width: 33.3333333333%;
+    width: 100%;
 }
 
 .my-works > .card-text > p {
@@ -150,6 +180,11 @@ a.my-works {
     border: 1px solid #ED6488;
     border-left: 4px solid #ED6488;
 }
+
+.my-works > .card-title > p {
+    font-size: 1em;
+}
+
 .my-works > .card-text > p:before {
     content: "#";
 }
