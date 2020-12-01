@@ -12,41 +12,21 @@
                 </div>
             </div>
 
-            <div id="myWorks" class="my-content my-works row">
+            <!-- Works -->
+            <div id="myWorks" class="my-works row">
                 <div id="myWorksTitle" class="my-works title col-sm-8 col-xl-8 offset-sm-2 offset-xl-2">
                     WORKS
                 </div>
-                <div id="myWorksText" class="my-works text col-sm-10 col-xl-10 offset-sm-1 offset-xl-1">
-                    <div class="container">
-                        <div class="card-deck">
-                            <div class="card">
-                                <img class="card-img-top" src="../../img/test-samegame.png" alt="Test Image">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <div class="card-text">
-                                        <p class="">Java</p>
-                                        <p class="">JavaScript</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <img class="card-img-top" src="../../img/test-samegame.png" alt="Test image">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <div class="card-text">
-                                        <p class="">Java</p>
-                                        <p class="">JavaScript</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <img class="card-img-top" src="../../img/test-samegame.png" alt="Test image">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <div class="card-text">
-                                        <p class="">Java</p>
-                                        <p class="">JavaScript</p>
-                                    </div>
+                <div id="myWorksText" class="my-works text row col-sm-10 col-xl-10 offset-sm-1 offset-xl-1">
+                    <div class="my-works container">
+                        <div class="my-works card-item" v-for="work in workList">
+                            <a class="my-works" :href="work.link">
+                                <img class="my-works card-img-top" :src="getImgPath(work.img_path)" alt="No image!">
+                            </a>
+                            <div class="my-works card-body">
+                                <p class="card-title">{{ work.title }}</p>
+                                <div class="card-text">
+                                    <p class="" v-for="tag in toTagList">{{ tag }}</p>
                                 </div>
                             </div>
                         </div>
@@ -73,17 +53,29 @@ export default {
     name: "PortfolioContent",
     data() {
         return {
-            contentList: []
+            contentList: [],
+            workList: [],
+            imgPath: [],
+            tagList: [],
         }
     },
     mounted() {
         this.getContents();
+        this.getWorks();
     },
     methods: {
         getContents() {
             axios.get('/api/contents').then((res) => {
                 this.contentList = res.data;
             });
+        },
+        getWorks() {
+            axios.get('/api/works').then((res) => {
+                this.workList = res.data;
+            });
+        },
+        getImgPath(path) {
+            return require(`../../img/${path}`);
         },
     },
     filters: {
@@ -99,6 +91,11 @@ export default {
         getContact: function() {
             return this.contentList.filter(c => c.content_type == "contact")
         },
+        toTagList: function () {
+            this.workList.forEach(w => {
+                return w.tags.split(",");
+            });
+        },
     }
 }
 </script>
@@ -106,40 +103,91 @@ export default {
 <style scoped>
 .portfolio-content {
     text-align: center;
-    padding-top: 4%;
-}
-
-.content-title{
-    font-size: 68px;
+    padding-top: 68px;
+    color: #421C26;
 }
 
 .my-contents > .my-content {
     padding: 2%;
 }
 
-.my-content > .title {
-    font-size: 40px;
+a.my-works {
+    color: #421C26;
 }
 
-.my-content > .text {
-    font-size: 20px;
+.my-works.container {
+    display: flex;
+    /* flexboxレイアウトを使うための命令 */
+    flex-wrap: wrap;
+    /* 上記で囲われたflexアイテムを折り返すように設定する */
 }
 
-.card-text > p {
+/* For Desktop */
+@media (min-width: 768px) {
+
+    .content-title{
+        font-size: 3.8em;
+    }
+
+    .my-content > .title, .my-works.title {
+        font-size: 2em;
+    }
+
+    .my-content > .text {
+        font-size: 1.2rem;
+    }
+
+    .my-works.card-item {
+        padding: 0.75em;
+        width: 33.3333333333%;
+    }
+}
+
+/* For SmartPhone */
+@media (max-width: 767.98px) {
+
+    .content-title{
+        font-size: 3em;
+    }
+
+    .my-content > .title, .my-works.title {
+        font-size: 1.8em;
+    }
+
+    .my-content > .text {
+        font-size: 1.1rem;
+    }
+
+    .my-works.card-item {
+        padding: 0.75em;
+        width: 100%;
+    }
+}
+
+.my-works.card-item {
+    padding: 0.75em;
+    width: 100%;
+}
+
+.my-works > .card-text > p {
     font-size: 14px;
     display: inline-block;
-    margin: 0 .1em .2em 0;
-    padding: .2em;
+    margin: 0 .4em .4em 0;
+    padding: .4em;
     line-height: 1;
-    color: #F5A9B3;
-    background-color: #fff;
-    border: 1px solid #F5A9B3;
-    border-left: 4px solid #F5A9B3;
-}
-.card-text > p:before {
-    content: "#";
+    color: #ED6488;
+    background-color: #FFF;
+    border: 1px solid #ED6488;
+    border-left: 4px solid #ED6488;
 }
 
+.my-works > .card-title > p {
+    font-size: 1em;
+}
+
+.my-works > .card-text > p:before {
+    content: "#";
+}
 
 
 </style>

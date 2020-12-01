@@ -20,3 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // contents
 Route::resource('/contents', 'ContentController');
+// works
+Route::resource('/works', 'WorkController');
