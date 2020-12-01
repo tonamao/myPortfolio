@@ -16670,6 +16670,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PortfolioHeader"
 });
@@ -21116,7 +21119,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.portfolio-content[data-v-7080e7fc] {\n    text-align: center;\n    padding-top: 4%;\n    color: #421C26;\n}\n.content-title[data-v-7080e7fc]{\n    font-size: 68px;\n}\n.my-contents > .my-content[data-v-7080e7fc] {\n    padding: 2%;\n}\n.my-content > .title[data-v-7080e7fc] {\n    font-size: 40px;\n}\n.my-content > .text[data-v-7080e7fc] {\n    font-size: 20px;\n}\na.my-works[data-v-7080e7fc] {\n    color: #421C26;\n}\n.my-works.container[data-v-7080e7fc] {\n    display: flex;\n    /* flexboxレイアウトを使うための命令 */\n    flex-wrap: wrap;\n    /* 上記で囲われたflexアイテムを折り返すように設定する */\n}\n.my-works.card-item[data-v-7080e7fc] {\n    padding: 0.75em;\n    width: 33.3333333333%;\n}\n.my-works > .card-text > p[data-v-7080e7fc] {\n    font-size: 14px;\n    display: inline-block;\n    margin: 0 .4em .4em 0;\n    padding: .4em;\n    line-height: 1;\n    color: #ED6488;\n    background-color: #FFF;\n    border: 1px solid #ED6488;\n    border-left: 4px solid #ED6488;\n}\n.my-works > .card-text > p[data-v-7080e7fc]:before {\n    content: \"#\";\n}\n\n\n", ""]);
+exports.push([module.i, "\n.portfolio-content[data-v-7080e7fc] {\n    text-align: center;\n    padding-top: 68px;\n    color: #421C26;\n}\n.my-contents > .my-content[data-v-7080e7fc] {\n    padding: 2%;\n}\na.my-works[data-v-7080e7fc] {\n    color: #421C26;\n}\n.my-works.container[data-v-7080e7fc] {\n    display: flex;\n    /* flexboxレイアウトを使うための命令 */\n    flex-wrap: wrap;\n    /* 上記で囲われたflexアイテムを折り返すように設定する */\n}\n\n/* For Desktop */\n@media (min-width: 768px) {\n.content-title[data-v-7080e7fc]{\n        font-size: 3.8em;\n}\n.my-content > .title[data-v-7080e7fc], .my-works.title[data-v-7080e7fc] {\n        font-size: 2em;\n}\n.my-content > .text[data-v-7080e7fc] {\n        font-size: 1.2rem;\n}\n.my-works.card-item[data-v-7080e7fc] {\n        padding: 0.75em;\n        width: 33.3333333333%;\n}\n}\n\n/* For SmartPhone */\n@media (max-width: 767.98px) {\n.content-title[data-v-7080e7fc]{\n        font-size: 3em;\n}\n.my-content > .title[data-v-7080e7fc], .my-works.title[data-v-7080e7fc] {\n        font-size: 1.8em;\n}\n.my-content > .text[data-v-7080e7fc] {\n        font-size: 1.1rem;\n}\n.my-works.card-item[data-v-7080e7fc] {\n        padding: 0.75em;\n        width: 100%;\n}\n}\n.my-works.card-item[data-v-7080e7fc] {\n    padding: 0.75em;\n    width: 100%;\n}\n.my-works > .card-text > p[data-v-7080e7fc] {\n    font-size: 14px;\n    display: inline-block;\n    margin: 0 .4em .4em 0;\n    padding: .4em;\n    line-height: 1;\n    color: #ED6488;\n    background-color: #FFF;\n    border: 1px solid #ED6488;\n    border-left: 4px solid #ED6488;\n}\n.my-works > .card-title > p[data-v-7080e7fc] {\n    font-size: 1em;\n}\n.my-works > .card-text > p[data-v-7080e7fc]:before {\n    content: \"#\";\n}\n\n\n", ""]);
 
 // exports
 
@@ -21135,7 +21138,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.portfolio-editor-content[data-v-7f6387e2] {\n    text-align: center;\n    padding-top: 4%;\n    color: #421C26;\n}\n.content-title[data-v-7f6387e2]{\n    font-size: 68px;\n}\n.my-contents > .my-content[data-v-7f6387e2] {\n    padding: 2%;\n}\n.my-content > .title[data-v-7f6387e2] {\n    font-size: 40px;\n}\n.my-content > .text[data-v-7f6387e2] {\n    font-size: 20px;\n}\na.my-works[data-v-7f6387e2] {\n    color: #421C26;\n}\n.my-works.container[data-v-7f6387e2] {\n    display: flex;\n    /* flexboxレイアウトを使うための命令 */\n    flex-wrap: wrap;\n    /* 上記で囲われたflexアイテムを折り返すように設定する */\n}\n.my-works.card-item[data-v-7f6387e2] {\n    padding: 0.75em;\n    width: 33.3333333333%;\n}\n.my-works > .card-text > p[data-v-7f6387e2] {\n    font-size: 14px;\n    display: inline-block;\n    margin: 0 .4em .4em 0;\n    padding: .4em;\n    line-height: 1;\n    color: #ED6488;\n    background-color: #FFF;\n    border: 1px solid #ED6488;\n    border-left: 4px solid #ED6488;\n}\n.my-works > .card-text > p[data-v-7f6387e2]:before {\n    content: \"#\";\n}\n\n\n\n", ""]);
+exports.push([module.i, "\n.portfolio-editor-content[data-v-7f6387e2] {\n    text-align: center;\n    padding-top: 68px;\n    color: #421C26;\n}\n.content-title[data-v-7f6387e2] {\n    font-size: 3em;\n}\n.my-contents > .my-content[data-v-7f6387e2] {\n    padding: 2%;\n}\n.my-content > .title[data-v-7f6387e2], .my-works.title[data-v-7f6387e2] {\n    font-size: 2em;\n}\n.my-content > .text[data-v-7f6387e2] {\n    font-size: 20px;\n}\na.my-works[data-v-7f6387e2] {\n    color: #421C26;\n}\n.my-works.container[data-v-7f6387e2] {\n    display: flex;\n    /* flexboxレイアウトを使うための命令 */\n    flex-wrap: wrap;\n    /* 上記で囲われたflexアイテムを折り返すように設定する */\n}\n\n/* For Desktop */\n@media (min-width: 768px) {\n.content-title[data-v-7f6387e2]{\n        font-size: 3.8em;\n}\n.my-content > .title[data-v-7f6387e2], .my-works.title[data-v-7f6387e2] {\n        font-size: 2em;\n}\n.my-content > .text[data-v-7f6387e2] {\n        font-size: 1.2rem;\n}\n.my-works.card-item[data-v-7f6387e2] {\n        padding: 0.75em;\n        width: 33.3333333333%;\n}\n}\n\n/* For SmartPhone */\n@media (max-width: 767.98px) {\n.content-title[data-v-7f6387e2]{\n        font-size: 3em;\n}\n.my-content > .title[data-v-7f6387e2], .my-works.title[data-v-7f6387e2] {\n        font-size: 1.8em;\n}\n.my-content > .text[data-v-7f6387e2] {\n        font-size: 1.1rem;\n}\n.my-works.card-item[data-v-7f6387e2] {\n        padding: 0.75em;\n        width: 100%;\n}\n}\n.my-works > .card-text > p[data-v-7f6387e2] {\n    font-size: 14px;\n    display: inline-block;\n    margin: 0 .4em .4em 0;\n    padding: .4em;\n    line-height: 1;\n    color: #ED6488;\n    background-color: #FFF;\n    border: 1px solid #ED6488;\n    border-left: 4px solid #ED6488;\n}\n.my-works > .card-title > p[data-v-7f6387e2] {\n    font-size: 1em;\n}\n.my-works > .card-text > p[data-v-7f6387e2]:before {\n    content: \"#\";\n}\n\n\n", ""]);
 
 // exports
 
@@ -21154,7 +21157,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.portfolio-header[data-v-0691c7da] {\n    background-color: rgba(246,223,221,.8);\n    box-shadow:  0 4px 4px 0 #662B3A;\n    position: fixed;\n    z-index: 2;\n}\n.header-content[data-v-0691c7da] {\n    text-align: center;\n}\n.header-content > span[data-v-0691c7da] {\n    color: #421C26;\n    padding: 0 25px;\n    font-size: 13px;\n    font-weight: 600;\n    letter-spacing: .1rem;\n    text-decoration: none;\n    text-transform: uppercase;\n}\n.links > a[data-v-0691c7da] {\n    color: #421C26;\n    padding: 0 25px;\n    font-size: 13px;\n    font-weight: 600;\n    letter-spacing: .1rem;\n    text-decoration: none;\n    text-transform: uppercase;\n}\n", ""]);
+exports.push([module.i, "\n.portfolio-header[data-v-0691c7da] {\n    color: #421C26;\n    background-color: rgba(246,223,221,.8);\n    box-shadow:  0 4px 4px 0 #662B3A;\n    position: fixed;\n    z-index: 2;\n}\n.portfolio-navbar[data-v-0691c7da] {\n    height: 56px;\n}\n.header-content[data-v-0691c7da] {\n    text-align: center;\n}\n.header-content > span[data-v-0691c7da] {\n    padding: 0 .2rem;\n    font-size: .8rem;\n    font-weight: 600;\n    letter-spacing: .1rem;\n    text-decoration: none;\n    text-transform: uppercase;\n}\n\n/* For Desktop */\n@media (min-width: 768px) {\n.portfolio-menu-title[data-v-0691c7da] {\n}\n.links > a[data-v-0691c7da] {\n        color: #421C26;\n        padding: 0 .2rem;\n        font-size: 13px;\n        font-weight: 600;\n        letter-spacing: .1rem;\n        text-decoration: none;\n        text-transform: uppercase;\n}\n}\n\n/* For SmartPhone */\n@media (max-width: 767.98px) {\n.portfolio-menu-title[data-v-0691c7da] {\n        display: none;\n}\n.links > a[data-v-0691c7da] {\n        display: none;\n}\n}\n", ""]);
 
 // exports
 
@@ -53101,75 +53104,65 @@ var render = function() {
             ])
           }),
           _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "my-content my-works row",
-              attrs: { id: "myWorks" }
-            },
-            [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "my-works title col-sm-8 col-xl-8 offset-sm-2 offset-xl-2",
-                  attrs: { id: "myWorksTitle" }
-                },
-                [_vm._v("\n                WORKS\n            ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "my-works text row col-sm-10 col-xl-10 offset-sm-1 offset-xl-1",
-                  attrs: { id: "myWorksText" }
-                },
-                [
-                  _c(
-                    "div",
-                    { staticClass: "my-works container" },
-                    _vm._l(_vm.workList, function(work) {
-                      return _c("div", { staticClass: "my-works card-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "my-works",
-                            attrs: { href: work.link }
-                          },
-                          [
-                            _c("img", {
-                              staticClass: "my-works card-img-top",
-                              attrs: {
-                                src: _vm.getImgPath(work.img_path),
-                                alt: "No image!"
-                              }
-                            })
-                          ]
-                        ),
+          _c("div", { staticClass: "my-works row", attrs: { id: "myWorks" } }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "my-works title col-sm-8 col-xl-8 offset-sm-2 offset-xl-2",
+                attrs: { id: "myWorksTitle" }
+              },
+              [_vm._v("\n                WORKS\n            ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "my-works text row col-sm-10 col-xl-10 offset-sm-1 offset-xl-1",
+                attrs: { id: "myWorksText" }
+              },
+              [
+                _c(
+                  "div",
+                  { staticClass: "my-works container" },
+                  _vm._l(_vm.workList, function(work) {
+                    return _c("div", { staticClass: "my-works card-item" }, [
+                      _c(
+                        "a",
+                        { staticClass: "my-works", attrs: { href: work.link } },
+                        [
+                          _c("img", {
+                            staticClass: "my-works card-img-top",
+                            attrs: {
+                              src: _vm.getImgPath(work.img_path),
+                              alt: "No image!"
+                            }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "my-works card-body" }, [
+                        _c("p", { staticClass: "card-title" }, [
+                          _vm._v(_vm._s(work.title))
+                        ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "my-works card-body" }, [
-                          _c("h5", { staticClass: "card-title" }, [
-                            _vm._v(_vm._s(work.title))
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "card-text" },
-                            _vm._l(_vm.toTagList, function(tag) {
-                              return _c("p", {}, [_vm._v(_vm._s(tag))])
-                            }),
-                            0
-                          )
-                        ])
+                        _c(
+                          "div",
+                          { staticClass: "card-text" },
+                          _vm._l(_vm.toTagList, function(tag) {
+                            return _c("p", {}, [_vm._v(_vm._s(tag))])
+                          }),
+                          0
+                        )
                       ])
-                    }),
-                    0
-                  )
-                ]
-              )
-            ]
-          ),
+                    ])
+                  }),
+                  0
+                )
+              ]
+            )
+          ]),
           _vm._v(" "),
           _vm._l(_vm.getContact, function(content) {
             return _c("div", { staticClass: "my-content row" }, [
@@ -53333,75 +53326,65 @@ var render = function() {
             ])
           }),
           _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "my-content my-works row",
-              attrs: { id: "myWorks" }
-            },
-            [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "my-works title col-sm-8 col-xl-8 offset-sm-2 offset-xl-2",
-                  attrs: { id: "myWorksTitle" }
-                },
-                [_vm._v("\n                WORKS\n            ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "my-works text row col-sm-10 col-xl-10 offset-sm-1 offset-xl-1",
-                  attrs: { id: "myWorksText" }
-                },
-                [
-                  _c(
-                    "div",
-                    { staticClass: "my-works container" },
-                    _vm._l(_vm.workList, function(work) {
-                      return _c("div", { staticClass: "my-works card-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "my-works",
-                            attrs: { href: work.link }
-                          },
-                          [
-                            _c("img", {
-                              staticClass: "my-works card-img-top",
-                              attrs: {
-                                src: _vm.getImgPath(work.img_path),
-                                alt: "No image!"
-                              }
-                            })
-                          ]
-                        ),
+          _c("div", { staticClass: "my-works row", attrs: { id: "myWorks" } }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "my-works title col-sm-8 col-xl-8 offset-sm-2 offset-xl-2",
+                attrs: { id: "myWorksTitle" }
+              },
+              [_vm._v("\n                WORKS\n            ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "my-works text col-sm-10 col-xl-10 offset-sm-1 offset-xl-1",
+                attrs: { id: "myWorksText" }
+              },
+              [
+                _c(
+                  "div",
+                  { staticClass: "my-works container" },
+                  _vm._l(_vm.workList, function(work) {
+                    return _c("div", { staticClass: "my-works card-item" }, [
+                      _c(
+                        "a",
+                        { staticClass: "my-works", attrs: { href: work.link } },
+                        [
+                          _c("img", {
+                            staticClass: "my-works card-img-top",
+                            attrs: {
+                              src: _vm.getImgPath(work.img_path),
+                              alt: "No image!"
+                            }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "my-works card-body" }, [
+                        _c("p", { staticClass: "card-title" }, [
+                          _vm._v(_vm._s(work.title))
+                        ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "my-works card-body" }, [
-                          _c("h5", { staticClass: "card-title" }, [
-                            _vm._v(_vm._s(work.title))
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "card-text" },
-                            _vm._l(work.tagList, function(tag) {
-                              return _c("p", {}, [_vm._v(_vm._s(tag.name))])
-                            }),
-                            0
-                          )
-                        ])
+                        _c(
+                          "div",
+                          { staticClass: "card-text" },
+                          _vm._l(work.tagList, function(tag) {
+                            return _c("p", {}, [_vm._v(_vm._s(tag.name))])
+                          }),
+                          0
+                        )
                       ])
-                    }),
-                    0
-                  )
-                ]
-              )
-            ]
-          ),
+                    ])
+                  }),
+                  0
+                )
+              ]
+            )
+          ]),
           _vm._v(" "),
           _vm._l(_vm.getContact, function(content) {
             return _c("div", { staticClass: "my-content row" }, [
@@ -53528,10 +53511,22 @@ var render = function() {
     },
     [
       _c("div", { staticClass: "container" }, [
-        _c("nav", { staticClass: "navbar" }, [
-          _c("span", { staticClass: "navbar-brand mb-0 h1" }, [
-            _vm._v("My Portfolio")
-          ]),
+        _c("nav", { staticClass: "navbar portfolio-navbar" }, [
+          _c(
+            "span",
+            { staticClass: "navbar-brand mb-0 h1" },
+            [
+              _c("font-awesome-icon", {
+                staticClass: "fa-icon bars portfolio-menu-icon",
+                attrs: { icon: "bars" }
+              }),
+              _vm._v(" "),
+              _c("span", { staticClass: "portfolio-menu-title" }, [
+                _vm._v("My Portfolio")
+              ])
+            ],
+            1
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "header-content" }, [
             _c("div", { staticClass: "links" }, [
