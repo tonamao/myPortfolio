@@ -17,7 +17,7 @@
                 <div id="myWorksTitle" class="my-works title col-sm-8 col-xl-8 offset-sm-2 offset-xl-2">
                     WORKS
                 </div>
-                <div id="myWorksText" class="my-works text row col-sm-10 col-xl-10 offset-sm-1 offset-xl-1">
+                <div id="myWorksText" class="my-works text col-sm-10 col-xl-10 offset-sm-1 offset-xl-1">
                     <div class="my-works container">
                         <div class="my-works card-item" v-for="work in workList">
                             <a class="my-works" :href="work.link">
@@ -25,9 +25,10 @@
                             </a>
                             <div class="my-works card-body">
                                 <p class="card-title">{{ work.title }}</p>
-                                <div class="card-text">
-                                    <p class="" v-for="tag in toTagList">{{ tag }}</p>
+                                <div class="card-text" v-for="tag in work.tags.split(',')">
+                                    <p class="tags">{{ tag }}</p>
                                 </div>
+                                <p class="card-text description">{{ work.description }}</p>
                             </div>
                         </div>
                     </div>
@@ -72,6 +73,7 @@ export default {
         getWorks() {
             axios.get('/api/works').then((res) => {
                 this.workList = res.data;
+                this.workList.forEach(w => this.tagList.push(w.tags));
             });
         },
         getImgPath(path) {
@@ -82,7 +84,7 @@ export default {
         convertUpperCase(value) {
             if (!value) return ""
             return value.toString().toUpperCase();
-        }
+        },
     },
     computed: {
         excludeContact: function() {
@@ -91,10 +93,8 @@ export default {
         getContact: function() {
             return this.contentList.filter(c => c.content_type == "contact")
         },
-        toTagList: function () {
-            this.workList.forEach(w => {
-                return w.tags.split(",");
-            });
+        toTag: function(tagString) {
+            return Array.of(tagString.split(","));
         },
     }
 }
@@ -164,12 +164,7 @@ a.my-works {
     }
 }
 
-.my-works.card-item {
-    padding: 0.75em;
-    width: 100%;
-}
-
-.my-works > .card-text > p {
+.my-works > .card-text > p.tags {
     font-size: 14px;
     display: inline-block;
     margin: 0 .4em .4em 0;
@@ -181,11 +176,15 @@ a.my-works {
     border-left: 4px solid #ED6488;
 }
 
-.my-works > .card-title > p {
+.my-works > .card-text.description {
+    font-size: 14px;
+}
+
+.my-works > .card-title > p.tags {
     font-size: 1em;
 }
 
-.my-works > .card-text > p:before {
+.my-works > .card-text > p.tags:before {
     content: "#";
 }
 
