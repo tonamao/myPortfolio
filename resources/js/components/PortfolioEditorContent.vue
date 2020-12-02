@@ -29,12 +29,13 @@
                             <a class="my-works" :href="work.link">
                                 <img class="my-works card-img-top" :src="getImgPath(work.img_path)" alt="No image!">
                             </a>
-                                <div class="my-works card-body">
-                                    <p class="card-title">{{ work.title }}</p>
-                                    <div class="card-text">
-                                        <p class="" v-for="tag in work.tagList">{{ tag.name }}</p>
-                                    </div>
+                            <div class="my-works card-body">
+                                <p class="card-title">{{ work.title }}</p>
+                                <div class="card-text" v-for="tag in work.tags.split(',')">
+                                    <p class="tags">{{ tag }}</p>
                                 </div>
+                                <p class="card-text description">{{ work.description }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -92,6 +93,7 @@ export default {
         getWorks() {
             axios.get('/api/works').then((res) => {
                 this.workList = res.data;
+                this.workList.forEach(w => this.tagList.push(w.tags));
             });
         },
         getImgPath(path) {
@@ -111,10 +113,8 @@ export default {
         getContact: function() {
             return this.contentList.filter(c => c.content_type == "contact")
         },
-        toTagList: function () {
-            this.workList.forEach(w => {
-                return w.tags.split(",");
-            });
+        toTag: function(tagString) {
+            return Array.of(tagString.split(","));
         },
     }
 }
@@ -169,7 +169,7 @@ a.my-works {
     .my-content > .text {
         font-size: 1.2rem;
     }
-    
+
     .my-works.card-item {
         padding: 0.75em;
         width: 33.3333333333%;
@@ -197,7 +197,7 @@ a.my-works {
     }
 }
 
-.my-works > .card-text > p {
+.my-works > .card-text > p.tags {
     font-size: 14px;
     display: inline-block;
     margin: 0 .4em .4em 0;
@@ -209,11 +209,15 @@ a.my-works {
     border-left: 4px solid #ED6488;
 }
 
-.my-works > .card-title > p {
+.my-works > .card-text.description {
+    font-size: 14px;
+}
+
+.my-works > .card-text > p.tags {
     font-size: 1em;
 }
 
-.my-works > .card-text > p:before {
+.my-works > .card-text > p.tags:before {
     content: "#";
 }
 
