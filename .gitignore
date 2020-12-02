@@ -13,7 +13,6 @@ yarn-error.log
 
 # 追加
 /public/js
-/public/image
 /public/css
 
 # Mac向け
