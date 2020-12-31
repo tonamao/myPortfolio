@@ -12,7 +12,7 @@ Start the application with the following command.
 
 After application start, access http://localhost/my-portfolio .  
 The page is portfolio.  
-Access http://localhost:60080/my-portfolio-admin .  
+Access http://localhost/my-portfolio-admin .  
 The page is for admin to edit portfolio.  
 (The admin page is under development.)
 
