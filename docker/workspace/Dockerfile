@@ -379,6 +379,14 @@ bindkey "^?" backward-delete-char\n' >> /home/laradock/.zshrc \
 
 USER root
 
+###########
+# mysql-cli
+###########
+USER root
+
+RUN apt-get update \
+&& apt-get install -y default-mysql-client
+
 #
 #--------------------------------------------------------------------------
 # Final Touch
@@ -397,5 +405,5 @@ WORKDIR /var/www/myPortfolio
 
 # 追加↓
 COPY initialdata.sh /tmp/initialdata.sh
-RUN sh -c sh /tmp/initialdata.sh
+CMD bash /tmp/initialdata.sh
 # 追加↑

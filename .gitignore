@@ -3,7 +3,8 @@
 /public/storage
 /storage/*.key
 /vendor
-.env
+.env*
+docker/.env
 .env.backup
 .phpunit.result.cache
 Homestead.json
@@ -14,6 +15,7 @@ yarn-error.log
 # 追加
 /public/js
 /public/css
+.portfolio-data
 
 # Mac向け
 *.DS_Store

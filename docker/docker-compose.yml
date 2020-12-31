@@ -73,6 +73,8 @@ services:
         - DOCKER_TLS_VERIFY=1
         - DOCKER_TLS_CERTDIR=/certs
         - DOCKER_CERT_PATH=/certs/client
+      depends_on:
+        - mysql
       networks:
         - frontend
         - backend
