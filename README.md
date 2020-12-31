@@ -7,7 +7,7 @@ You can introduce yourself and the works you created.
 ## How To Start
 Move to the docker directory.  
 `cd docker`  
-Start the application with the following command.
+Start the application with the following command.  
 `docker-compose up -d mysql nginx`
 
 After application start, access http://localhost/my-portfolio .  
