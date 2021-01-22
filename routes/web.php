@@ -17,10 +17,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/my-portfolio', function () {
+Route::get('/myportfolio', function () {
     return view('portfolio.home');
 });
 
-Route::get('/my-portfolio-admin', function () {
-    return view('portfolio.admin');
+Route::middleware(['auth', 'can:isAdmin'])->group(function (){
+    Route::get('/myportfolio/admin', function () {
+        return view('portfolio.admin');
+    });
 });
+
+Auth::routes([
+    'register' => false
+]);
+
+Route::get('/home', 'HomeController@index')->name('home');
