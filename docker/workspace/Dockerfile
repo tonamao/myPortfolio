@@ -25,13 +25,13 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # If you're in China, or you need to change sources, will be set CHANGE_SOURCE to true in .env.
 
-ARG CHANGE_SOURCE=false
-RUN if [ ${CHANGE_SOURCE} = true ]; then \
-    # Change application source from deb.debian.org to aliyun source
-    sed -i 's/deb.debian.org/mirrors.tuna.tsinghua.edu.cn/' /etc/apt/sources.list && \
-    sed -i 's/security.debian.org/mirrors.tuna.tsinghua.edu.cn/' /etc/apt/sources.list && \
-    sed -i 's/security-cdn.debian.org/mirrors.tuna.tsinghua.edu.cn/' /etc/apt/sources.list \
-;fi
+# ARG CHANGE_SOURCE=false
+# RUN if [ ${CHANGE_SOURCE} = true ]; then \
+#     # Change application source from deb.debian.org to aliyun source
+#     sed -i 's/deb.debian.org/mirrors.tuna.tsinghua.edu.cn/' /etc/apt/sources.list && \
+#     sed -i 's/security.debian.org/mirrors.tuna.tsinghua.edu.cn/' /etc/apt/sources.list && \
+#     sed -i 's/security-cdn.debian.org/mirrors.tuna.tsinghua.edu.cn/' /etc/apt/sources.list \
+# ;fi
 
 # Start as root
 USER root
@@ -50,11 +50,7 @@ ARG CHANGE_SOURCE=false
 ARG UBUNTU_SOURCE
 COPY ./sources.sh /tmp/sources.sh
 
-RUN if [ ${CHANGE_SOURCE} = true ]; then \
-    chmod +x /tmp/sources.sh && \
-    /bin/sh -c /tmp/sources.sh && \
-    rm -rf /tmp/sources.sh \
-;fi
+# RUN if [
 
 # always run apt update when start and after add new source list, then clean up at end.
 RUN set -xe; \
@@ -202,12 +198,12 @@ RUN chmod -R 644 /etc/cron.d
 # PHP REDIS EXTENSION
 ###########################################################################
 
-ARG INSTALL_PHPREDIS=false
+# ARG INSTALL_PHPREDIS=false
 
-RUN if [ ${INSTALL_PHPREDIS} = true ]; then \
-    apt-get update -yqq && \
-    apt-get install -yqq php-redis \
-;fi
+# RUN if [ ${INSTALL_PHPREDIS} = true ]; then \
+#     apt-get update -yqq && \
+#     apt-get install -yqq php-redis \
+# ;fi
 
 ###########################################################################
 # Node / NVM:

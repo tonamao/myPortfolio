@@ -16,6 +16,7 @@ yarn-error.log
 /public/js
 /public/css
 .portfolio-data
+docker/logs*
 
 # Mac向け
 *.DS_Store
