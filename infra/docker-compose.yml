@@ -1,0 +1,44 @@
+version: '3'
+volumes:
+  php-fpm-socket:
+  db-store:
+services:
+  app:
+    build:
+      context: ../../
+      dockerfile: myPortfolio/infra/app/Dockerfile
+      args:
+        # - LARADOCK_PHP_VERSION=${PHP_VERSION} #7.3
+        - DB_DATABASE=${MYSQL_DATABASE}
+        - DB_USERNAME=${MYSQL_USERNAME}
+        - DB_PASSWORD=${MYSQL_PASSWORD}
+    volumes:
+      - php-fpm-socket:/var/run/php-fpm
+      - ../../myPortfolio:/var/www/myPortfolio
+
+  web:
+    build:
+      context: nginx
+      args:
+        - NODE_VERSION=${NODE_VERSION} #14.2-alpine
+        - NGINX_VERSION=${NGINX_VERSION} #1.18-alpine
+    ports:
+      - "${NGINX_HOST_HTTP_PORT}:80"
+    volumes:
+      - php-fpm-socket:/var/run/php-fpm
+      - ../../myPortfolio:/var/www/myPortfolio
+
+  db:
+    build:
+      context: mysql
+      args:
+        - MYSQL_VERSION=${MYSQL_VERSION} #latest
+    ports:
+      - "${MYSQL_PORT}:3306"
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USERNAME}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - db-store:/var/lib/mysql
