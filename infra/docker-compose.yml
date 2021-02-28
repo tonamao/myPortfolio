@@ -18,7 +18,8 @@ services:
 
   web:
     build:
-      context: nginx
+      context: ../../
+      dockerfile: myPortfolio/infra/nginx/Dockerfile
       args:
         - NODE_VERSION=${NODE_VERSION} #14.2-alpine
         - NGINX_VERSION=${NGINX_VERSION} #1.18-alpine
