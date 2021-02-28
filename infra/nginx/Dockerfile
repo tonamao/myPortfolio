@@ -15,9 +15,10 @@ RUN apk update && \
 COPY --from=node /usr/local/bin /usr/local/bin
 # npm command
 COPY --from=node /usr/local/lib /usr/local/lib
-# yarn command　利用しないのでなし
-# COPY --from=node /opt /opt
 # nginx config file
-COPY default.conf /etc/nginx/conf.d/default.conf
+COPY myPortfolio/infra/nginx/default.conf /etc/nginx/conf.d/default.conf
+
+RUN mkdir -p /var/www/myPortfolio
+ADD ./myPortfolio /var/www/myPortfolio
 
 WORKDIR /var/www/myPortfolio
